@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>About Us - IEEE SITHYD Student Branch Chapter</title> <!-- Page title changed to About Us -->
+
+	<!-- Favicon (Page Icon) - Using Font Awesome Cube SVG -->
+	<link rel="icon" type="image/svg+xml"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/svgs/solid/cube.svg">
+
+	<!-- Bootstrap CSS from CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+	<!-- Font Awesome Icons from CDN -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Custom CSS goes here -->
+	<style>
+		/* CSS Variables for Light Mode Only */
+		:root {
+			--body-bg: #f8f9fa;
+			/* Solid background for sections below hero */
+			--body-text: #333;
+			/* Text color for standard sections */
+			--hero-text-color: #ffffff;
+			/* Light text for hero content on dark image */
+			--glass-section-bg: rgba(255, 255, 255, 0.7);
+			/* DECREASED TRANSPARENCY (more opaque): Unified background for glass sections (navbar) */
+			--glass-section-border: rgba(255, 255, 255, 0.8);
+			/* Unified border for glass sections */
+			--glass-section-shadow: rgba(31, 38, 135, 0.3);
+			/* Unified shadow for glass sections */
+			--standard-section-bg: #ffffff;
+			/* Background for non-glass sections */
+			--standard-section-shadow: rgba(0, 0, 0, 0.1);
+			/* Shadow for non-glass sections */
+			--header-color: #007bff;
+			/* Header color for standard sections (e.g., Vision/Mission titles) */
+			--nav-link-color: #343a40;
+			/* NAV LINK COLOR: Dark for visibility on light/grey backgrounds */
+			--nav-link-hover-bg: rgba(0, 123, 255, 0.8);
+			/* Nav link hover background (slightly more opaque) */
+			--nav-link-hover-color: #ffffff;
+			/* Nav link hover text color */
+			--collapsed-menu-bg: rgba(255, 255, 255, 0.95);
+			/* Collapsed menu background */
+			--background-overlay: rgba(0, 0, 0, 0.6);
+			/* Consistently dark overlay for background image */
+			--icon-bg: #007bff;
+			/* Icon background color */
+			--icon-color: #ffffff;
+			/* Icon color */
+
+			/* Featurette Specific Variables */
+			--featurette-heading-color: #333;
+			--featurette-text-color: #6c757d;
+			--featurette-svg-bg: #e9ecef;
+			/* Light background for SVG placeholder */
+			--featurette-svg-text: #6c757d;
+			/* Dark text for SVG placeholder */
+
+			/* Footer Specific Variables */
+			--footer-bg: #f8f9fa;
+			--footer-text-color: #6c757d;
+			--footer-link-color: #6c757d;
+			--footer-link-hover-color: #007bff;
+
+			/* Jumbotron Specific Variables */
+			--jumbotron-text-color: #ffffff;
+			/* Jumbotron text color is always white */
+			--jumbotron-overlay: rgba(0, 0, 0, 0.4);
+			--jumbotron-button-bg: #007bff;
+			--jumbotron-button-text: #ffffff;
+		}
+
+		/* Base Body Styles */
+		body {
+			font-family: 'Inter', sans-serif;
+			/* Using Inter font as per instructions */
+			color: var(--body-text);
+			min-height: 100vh;
+			/* Ensure body takes full viewport height */
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			padding-top: 100px;
+			/* Added padding-top to body to account for fixed navbar */
+			background-color: var(--body-bg);
+			/* Solid background for the body below the hero-background-container */
+			transition: background-color 0.5s ease, color 0.5s ease;
+			/* Smooth transition for mode change */
+		}
+
+		/* Hero Background Container - This div holds the background image and covers the landing zone */
+		/* REMOVED: .hero-background-container styling as the section is removed */
+
+		/* Glass Morphism Section Base Styling (only for Navbar now) */
+		.glass-section {
+			background-color: var(--glass-section-bg);
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			/* For Safari support */
+			border: 1px solid var(--glass-section-border);
+			box-shadow: 0 8px 32px 0 var(--glass-section-shadow);
+			border-radius: 15px;
+			/* Default rounded corners for sections */
+			transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+			/* Smooth transition */
+		}
+
+		/* Header Section: Island Navbar Specific Styling */
+		.island-navbar {
+			position: fixed;
+			/* Make it float */
+			top: 70px;
+			/* Distance from the top */
+			left: 50%;
+			/* Center horizontally */
+			transform: translateX(-50%);
+			/* Adjust for perfect centering */
+			max-width: 95%;
+			/* INCREASED NAV MAX-WIDTH to make words fit */
+			width: auto;
+			/* Allow content to dictate width */
+			padding: 10px 25px;
+			/* INCREASED NAV PADDING slightly */
+			z-index: 1000;
+			/* Ensure it stays on top of other content */
+			display: flex;
+			/* Use flexbox for internal alignment */
+			justify-content: center;
+			/* Center nav items */
+			align-items: center;
+			border-radius: 50px;
+			/* Highly rounded corners for island effect */
+		}
+
+		.island-navbar .navbar-nav .nav-link {
+			padding: 8px 15px;
+			/* Adjust padding for links */
+			border-radius: 30px;
+			/* Rounded pill shape for active/hover */
+			transition: background-color 0.3s ease, color 0.3s ease;
+			color: var(--nav-link-color);
+			/* Nav link color */
+		}
+
+		.island-navbar .navbar-nav .nav-link.active,
+		.island-navbar .navbar-nav .nav-link:hover {
+			background-color: var(--nav-link-hover-bg);
+			/* Semi-transparent primary blue on hover/active */
+			color: var(--nav-link-hover-color);
+			/* Nav link hover text color */
+		}
+
+		/* Logo Styling */
+		.island-navbar .navbar-brand {
+			font-weight: bold;
+			font-size: 1.4em;
+			color: var(--header-color);
+			/* Match primary color */
+			margin-right: 20px;
+			/* Space between logo and nav items */
+			padding: 0;
+			/* Remove default padding */
+			transition: color 0.5s ease;
+		}
+
+		/* Hero Section Styling - No box, text directly on image */
+		/* REMOVED: .hero-section styling as the section is removed */
+
+		.custom-section {
+			max-width: 1600px;
+			/* or any width you prefer */
+			margin-left: auto;
+			margin-right: auto;
+			padding-left: 24px;
+			/* optional, for inner spacing */
+			padding-right: 24px;
+			/* optional, for inner spacing */
+
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		/* Vision and Mission Section Styling (Standard, non-glass) */
+		.vision-mission-section {
+			width: 90%;
+			/* Set width to 90% for a responsive 3/4 effect */
+			max-width: 1200px;
+			/* Max width to prevent it from becoming too wide on very large screens */
+			margin: 50px auto;
+			/* Center horizontally with auto margins and consistent vertical margins */
+			padding: 50px;
+			/* Consistent padding for content */
+			background-color: var(--standard-section-bg);
+			/* Standard background color */
+			box-shadow: 0 4px 15px var(--standard-section-shadow);
+			/* Standard shadow */
+			border-radius: 15px;
+			/* Rounded corners */
+			transition: background-color 0.5s ease, box-shadow 0.5s ease;
+			/* Smooth transition */
+		}
+
+		.vision-mission-section .section-title {
+			font-size: 2.25rem;
+			/* Increased font size for h2 */
+			color: var(--header-color) !important;
+			/* Use !important to override Bootstrap utility classes */
+			margin-bottom: 2rem;
+			/* Space below title */
+			transition: color 0.5s ease;
+			text-align: left;
+			/* Align title to left */
+		}
+
+		.vision-mission-section .section-description {
+			font-size: 1.15rem;
+			/* Slightly increased font size for paragraphs */
+			line-height: 1.7;
+			/* Increased line-height for better readability and spread */
+			color: var(--body-text) !important;
+			/* Use !important to override Bootstrap utility classes */
+			text-align: justify;
+			/* Justify text */
+			margin-bottom: 2rem;
+			/* Space below description */
+			transition: color 0.5s ease;
+		}
+
+		.vision-mission-section .feature-item {
+			padding: 1.5rem;
+			/* Add padding to make boxes appear more square */
+			background-color: var(--standard-section-bg);
+			/* Ensure background for individual boxes */
+			border-radius: 10px;
+			/* Rounded corners for individual boxes */
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			/* Subtle shadow for individual boxes */
+			transition: background-color 0.5s ease, box-shadow 0.5s ease;
+			/* Smooth transition */
+			height: 100%;
+			/* Ensure equal height for all feature boxes in a row */
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			/* Align content to start within the box */
+			text-align: left;
+			/* Align text to left within the box */
+		}
+
+		.vision-mission-section .feature-item h4 {
+			font-size: 1.5rem;
+			/* Increased font size for h4 */
+			color: var(--header-color) !important;
+			/* Use !important to override Bootstrap utility classes */
+			margin-bottom: 0.5rem;
+			/* Space below heading */
+			transition: color 0.5s ease;
+		}
+
+		.vision-mission-section .feature-item p {
+			font-size: 1.05rem;
+			/* Slightly smaller font for feature descriptions */
+			line-height: 1.6;
+			/* Adjusted line-height */
+			color: var(--body-text) !important;
+			/* Use !important to override Bootstrap utility classes */
+			text-align: left;
+			/* Align text to left within the box */
+			flex-grow: 1;
+			/* Allow paragraph to grow and fill space */
+			transition: color 0.5s ease;
+		}
+
+		/* Feature Icon Styling */
+		.feature-icon-base {
+			width: 3.5rem;
+			/* Slightly larger icon container */
+			height: 3.5rem;
+			/* Slightly larger icon container */
+			border-radius: 0.25rem;
+			/* More square corners for the icon background */
+			background-color: var(--icon-bg);
+			/* Icon background color */
+			color: var(--icon-color);
+			/* Icon color */
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.75rem;
+			/* Increased icon size */
+			margin-bottom: 1rem;
+			/* Space below icon */
+			transition: background-color 0.5s ease, color 0.5s ease;
+			/* Smooth transition */
+		}
+
+
+		/* Featurette Sections Styling */
+		.featurette-section-container {
+			width: 90%;
+			max-width: 1200px;
+			margin: 80px auto;
+			padding: 20px;
+			transition: background-color 0.5s ease;
+		}
+
+		.featurette-divider {
+			margin: 5rem 0;
+			/* Increased vertical spacing */
+			border-color: var(--body-text);
+			/* Divider color adapts to theme */
+			opacity: 0.25;
+			/* Make it subtle */
+			transition: border-color 0.5s ease, opacity 0.5s ease;
+		}
+
+		.featurette-heading {
+			color: var(--featurette-heading-color);
+			transition: color 0.5s ease;
+		}
+
+		.featurette-heading .text-body-secondary {
+			color: var(--featurette-text-color) !important;
+			/* Ensure text-body-secondary adapts */
+			transition: color 0.5s ease;
+		}
+
+		.featurette p.lead {
+			color: var(--featurette-text-color);
+			transition: color 0.5s ease;
+		}
+
+		/* SVG Placeholder styling */
+		.bd-placeholder-img rect {
+			fill: var(--featurette-svg-bg) !important;
+			transition: fill 0.5s ease;
+		}
+
+		.bd-placeholder-img text {
+			fill: var(--featurette-svg-text) !important;
+			transition: fill 0.5s ease;
+		}
+
+		/* Footer Styling */
+		.site-footer {
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 50px 20px;
+			background-color: var(--footer-bg);
+			border-top: 1px solid rgba(0, 0, 0, 0.1);
+			transition: background-color 0.5s ease, border-color 0.5s ease;
+		}
+
+		.site-footer h5 {
+			color: var(--body-text);
+			transition: color 0.5s ease;
+		}
+
+		.site-footer .text-body-secondary {
+			color: var(--footer-text-color) !important;
+			transition: color 0.5s ease;
+		}
+
+		.site-footer .nav-link {
+			color: var(--footer-link-color) !important;
+			transition: color 0.5s ease;
+		}
+
+		.site-footer .nav-link:hover {
+			color: var(--footer-link-hover-color) !important;
+		}
+
+		/* Jumbotron Specific Styling */
+		.jumbotron-container {
+			background-image: url('https://placehold.co/1200x600/007bff/ffffff?text=Jumbotron+Image');
+			/* Placeholder image for Jumbotron */
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			position: relative;
+			z-index: 1;
+			color: var(--jumbotron-text-color);
+			/* Text color for Jumbotron */
+			transition: color 0.5s ease;
+		}
+
+		.jumbotron-container::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: var(--jumbotron-overlay);
+			/* Overlay color adapts to theme */
+			z-index: 2;
+			border-radius: inherit;
+			transition: background 0.5s ease;
+		}
+
+		.jumbotron-container>* {
+			position: relative;
+			z-index: 3;
+		}
+
+		.jumbotron-container h1 {
+			color: var(--jumbotron-text-color) !important;
+			/* Ensure Jumbotron H1 is white */
+			transition: color 0.5s ease;
+		}
+
+		.jumbotron-container p {
+			color: var(--jumbotron-text-color);
+			transition: color 0.5s ease;
+		}
+
+		.jumbotron-container .btn-primary {
+			background-color: var(--jumbotron-button-bg);
+			border-color: var(--jumbotron-button-bg);
+			color: var(--jumbotron-button-text);
+			transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+		}
+
+		/* Responsive Adjustments */
+		@media (max-width: 991.98px) {
+
+			/* Bootstrap's 'lg' breakpoint */
+			.island-navbar {
+				top: 10px;
+				padding: 10px 15px;
+				border-radius: 15px;
+				/* Less rounded for mobile */
+				max-width: 95%;
+				/* More width for mobile */
+				justify-content: space-between;
+				/* Space out brand and toggler */
+			}
+
+			.island-navbar .navbar-collapse {
+				background-color: var(--collapsed-menu-bg);
+				/* More opaque background for collapsed menu */
+				border-radius: 10px;
+				margin-top: 10px;
+				/* Space below toggler */
+				box-shadow: 0 4px 10px var(--glass-section-shadow);
+				/* Use glass section shadow for consistency */
+				padding: 10px;
+				transition: background-color 0.5s ease, box-shadow 0.5s ease;
+				/* Smooth transition */
+			}
+
+			.island-navbar .navbar-nav {
+				flex-direction: column;
+				/* Stack links vertically */
+				align-items: flex-start;
+				/* Align links to the left */
+			}
+
+			.island-navbar .navbar-nav .nav-item {
+				width: 100%;
+				/* Full width for each item */
+				text-align: left;
+			}
+
+			.island-navbar .navbar-nav .nav-link {
+				padding: 10px 15px;
+				/* Larger tap target */
+			}
+
+			.island-navbar .navbar-brand {
+				margin-right: 0;
+				/* Remove margin on small screens */
+			}
+
+			.hero-section,
+			.vision-mission-section {
+				padding: 20px;
+				/* Reduce padding on smaller screens */
+			}
+
+			.vision-mission-section .row.g-5>.col {
+				padding-top: 1.5rem !important;
+				/* Adjust vertical gap for smaller screens */
+				padding-bottom: 1.5rem !important;
+			}
+
+			.vision-mission-section .section-title {
+				font-size: 1.75rem;
+				/* Adjust font size for h2 on smaller screens */
+				text-align: center;
+				/* Center title on small screens */
+			}
+
+			.vision-mission-section .section-description {
+				font-size: 1rem;
+				/* Adjust font size for paragraphs on smaller screens */
+				text-align: left;
+				/* Align text left on small screens */
+			}
+
+			.vision-mission-section .feature-item h4 {
+				font-size: 1.25rem;
+				/* Adjust font size for h4 on smaller screens */
+			}
+
+			.vision-mission-section .feature-item p {
+				font-size: 0.9rem;
+				/* Adjust font size for paragraphs on smaller screens */
+			}
+
+			.feature-icon-base {
+				width: 3rem;
+				height: 3rem;
+				font-size: 1.5rem;
+			}
+
+			/* Ensure individual boxes stack on very small screens */
+			.vision-mission-section .row-cols-sm-2>* {
+				flex: 0 0 auto;
+				width: 100%;
+			}
+
+			.featurette-section-container {
+				margin: 40px auto;
+			}
+
+			.featurette-divider {
+				margin: 3rem 0;
+			}
+
+			.featurette-heading {
+				font-size: 1.75rem;
+			}
+
+			.featurette p.lead {
+				font-size: 1rem;
+			}
+		}
+
+		/* Tablet/Small Desktop adjustments for 2x2 grid */
+		@media (min-width: 576px) and (max-width: 991.98px) {
+
+			/* sm and md breakpoints */
+			.vision-mission-section .row-cols-sm-2>* {
+				flex: 0 0 auto;
+				width: 50%;
+				/* Make them 2 per row */
+			}
+		}
+
+		@media (min-width: 992px) {
+
+			/* lg and up */
+			.vision-mission-section .row-cols-md-2>* {
+				flex: 0 0 auto;
+				width: 50%;
+				/* Ensure 2 per row for the 2x2 grid */
+			}
+		}
+
+		/*===== SLIDER THREE =====*/
+		.slider-three {
+			background-color: var(--light-2);
+			padding-top: 112px;
+			padding-bottom: 130px;
+		}
+
+		.slider-three .section-title .title {
+			font-size: 44px;
+			line-height: 55px;
+			font-weight: 600;
+			color: var(--black);
+		}
+
+		@media (max-width: 767px) {
+			.slider-three .section-title .title {
+				font-size: 28px;
+				line-height: 32px;
+			}
+		}
+
+		.slider-three .section-title .text {
+			color: var(--dark-3);
+			margin-top: 24px;
+		}
+
+		.slider-three .slider-items-wrapper {
+			position: relative;
+		}
+
+		.slider-three .slider-items-wrapper .tns-nav {
+			width: 100%;
+			z-index: 2;
+			display: flex;
+			justify-content: center;
+			margin-top: 40px;
+		}
+
+		.slider-three .slider-items-wrapper .tns-nav button {
+			width: 10px;
+			height: 10px;
+			border-radius: 50px;
+			background-color: var(--primary);
+			opacity: 0.5;
+			border: 0;
+			margin: 0 5px;
+			-webkit-transition: all 0.4s ease-out 0s;
+			-moz-transition: all 0.4s ease-out 0s;
+			-ms-transition: all 0.4s ease-out 0s;
+			-o-transition: all 0.4s ease-out 0s;
+			transition: all 0.4s ease-out 0s;
+		}
+
+		.slider-three .slider-items-wrapper .tns-nav button.tns-nav-active {
+			width: 20px;
+			opacity: 1;
+			border-radius: 5px;
+		}
+
+		.slider-three .single-items-one {
+			margin-top: 40px;
+		}
+
+		.slider-three .single-items-one img {
+			width: 100%;
+			box-shadow: var(--shadow-2);
+			border-radius: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Header Section: Island Navbar with Glass Morphism -->
+	<header class="island-navbar navbar navbar-expand-lg navbar-light glass-section">
+		<div class="container-fluid">
+
+
+			<!-- Navbar Toggler for Mobile -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Navigation Links -->
+			<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item mx-2"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item mx-2"><a href="about.html" class="nav-link" aria-current="page">About Us</a>
+					</li>
+					<li class="nav-item mx-2"><a href="#offcanvasExample" class="nav-link btn"
+							data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample">Branch
+							Chapters</a>
+					</li>
+					<li class="nav-item mx-2"><a href="comingsoon.html" class="nav-link">Events</a></li>
+					<li class="nav-item mx-2"><a href="comingsoon.html" class="nav-link">Gallery</a></li>
+					<li class="nav-item mx-2"><a href="comingsoon.html" class="nav-link">Newsletters</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!--Off Canvas-->
+	<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasExampleLabel">Branch Chapters</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div>
+				<b>View All the IEEE Chapters at the SITHYD branch</b>
+			</div>
+			<br>
+			<div class="list-group list-group-flush border-bottom scrollarea"> <a href="#"
+					class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
+					<div class="d-flex w-100 align-items-center justify-content-between"> <strong class="mb-1">List
+							group item heading</strong> <small>Wed</small> </div>
+					<div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.
+					</div>
+				</a>
+
+			</div>
+		</div>
+	</div>
+	<!-- Comning Soon -->
+	<div class="container px-5 py-5 m-5"></div>
+
+	<div class="px-4 pt-5 my-5 text-center border-bottom">
+		<h1 class="display-4 fw-bold text-body-emphasis">Coming SOON !</h1>
+		<div class="col-lg-6 mx-auto">
+			<p class="lead mb-4">Most pages are ready; a few are still getting their makeover. Hold the applause—we’re
+				almost runway-ready.</p>
+			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"> <button type="button"
+					class="btn btn-primary btn-lg px-4 me-sm-3"
+					onclick="window.location.href='index.html'">Home</button> <button type="button"
+					class="btn btn-outline-secondary btn-lg px-4"
+					onclick="window.location.href='about.html'">About</button> </div>
+		</div>
+		<div class="overflow-hidden" style="max-height: 30vh;">
+			<div class="container px-5"> <img src="images/construction.png"
+					class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500"
+					loading="lazy"> </div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div class="container">
+		<footer class="py-3 my-4">
+			<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+				<li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+				<li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+				<li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+				<li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+				<li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+			</ul>
+			<p class="text-center text-body-secondary">© 2025 Company, Inc</p>
+		</footer>
+	</div>
+	<!-- Bootstrap JavaScript Bundle with Popper from CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html

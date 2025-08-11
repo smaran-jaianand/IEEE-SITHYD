@@ -1,0 +1,25 @@
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment variables
+.env
+
+# Some HTML TEST FILES
+branches-template.html
+copy.html
